@@ -20,4 +20,38 @@ metrics:
       - browser
       - os
       - new
+
+  - name: triggers
+    label: count events
+    model: ref('basic')
+
+    type: count
+    sql: user_id 
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+
+  - name: activity
+    label: count events per user
+
+    type: expression
+    sql: "{{metric('triggers')}} / {{metric('users')}}"
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+
+
+  
     
