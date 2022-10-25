@@ -1,14 +1,13 @@
-
 version: 2
 
+
 models:
- - name: sources
-   ...
+  - name: basic
 
 metrics:
   - name: users
     label: count usersid
-    model: ref('sources')
+    model: ref('basic')
 
     type: count_distinct
     sql: user_id 
