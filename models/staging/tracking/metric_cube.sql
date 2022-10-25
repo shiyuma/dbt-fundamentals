@@ -2,7 +2,7 @@ with metrics_res as (select *
 from {{ metrics.calculate(
     [metric('users'),metric('triggers'),metric('activity')],
     grain='week',
-    dimensions=['event','browser'],
+    dimensions=['event','browser','os'],
     start_date='2020-01-01',
     end_date='2022-12-31',
 ) }}

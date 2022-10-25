@@ -21,6 +21,26 @@ metrics:
       - os
       - new
 
+  - name: new_users
+    label: count new usersid
+    model: ref('basic')
+
+    type: count_distinct
+    sql: user_id 
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+    filters:
+      - field: new
+        operator: 'is'
+        value: "1"
+
   - name: triggers
     label: count events
     model: ref('basic')
