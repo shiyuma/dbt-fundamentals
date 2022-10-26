@@ -3,6 +3,17 @@ version: 2
 
 models:
   - name: basic
+    columns:
+      - name: event
+      - name: user_id
+      - name: date
+      - name: time
+      - name: browser
+      - name: is_new
+      - name: os
+      - name: ip
+
+
 
 metrics:
   - name: users
