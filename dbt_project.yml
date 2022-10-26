@@ -40,6 +40,5 @@ models:
     staging:
       jaffle_shop:
         +materialized: view
-    staging:
       tracking:
         +materialized: table
