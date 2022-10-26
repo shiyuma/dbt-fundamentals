@@ -37,9 +37,9 @@ metrics:
       - os
       - new
     filters:
-      - field: new
-        operator: 'is'
-        value: "1"
+      - field: is_new
+        operator: '='
+        value: '1'
 
   - name: triggers
     label: count events
