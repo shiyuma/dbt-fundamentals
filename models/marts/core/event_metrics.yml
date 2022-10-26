@@ -1,0 +1,77 @@
+version: 2
+
+
+models:
+  - name: basic
+
+metrics:
+  - name: users
+    label: count usersid
+    model: ref('basic')
+
+    type: count_distinct
+    sql: user_id 
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+
+  - name: new_users
+    label: count new usersid
+    model: ref('basic')
+
+    type: count_distinct
+    sql: user_id 
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+    filters:
+      - field: is_new
+        operator: '='
+        value: '1'
+
+  - name: triggers
+    label: count events
+    model: ref('basic')
+
+    type: count
+    sql: user_id 
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+
+  - name: activity
+    label: count events per user
+
+    type: expression
+    sql: "{{metric('triggers')}} / {{metric('users')}}"
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+
+
+  
+    

@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: t_source
+    database: dbtproject-341213
+    schema: dbt_mmarc
+    tables:
+      - name: ods_users
+      - name: ods_events
