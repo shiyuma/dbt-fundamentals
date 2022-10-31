@@ -3,20 +3,9 @@ version: 2
 
 models:
   - name: basic
-    columns:
-      - name: event
-      - name: user_id
-      - name: date
-      - name: time
-      - name: browser
-      - name: is_new
-      - name: os
-      - name: ip
-
-
 
 metrics:
-  - name: users
+  - name: users 
     label: count usersid
     model: ref('basic')
 
@@ -31,6 +20,25 @@ metrics:
       - browser
       - os
       - new
+
+  - name: day14_users 
+    label: count usersid
+    model: ref('basic')
+
+    type: count_distinct
+    sql: user_id 
+
+    window: {count: 1, period: day}
+
+    timestamp: time
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - event
+      - browser
+      - os
+      - new
+
 
   - name: new_users
     label: count new usersid
