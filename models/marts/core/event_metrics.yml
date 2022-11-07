@@ -21,14 +21,14 @@ metrics:
       - os
       - new
 
-  - name: day14_users 
+  - name: day7_users 
     label: count usersid
     model: ref('basic')
 
     type: count_distinct
     sql: user_id 
 
-    window: {count: 1, period: day}
+    window: {count: 7, period: day}
 
     timestamp: time
     time_grains: [day, week, month, quarter, year]
